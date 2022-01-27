@@ -1,12 +1,13 @@
-\documentclass[fleqn,10pt]{olplainarticle}
+\documentclass[fleqn,12pt]{olplainarticle}
 % Use option lineno for line numbers 
+\renewcommand{\baselinestretch}{1.3}
 
 \title{Docker in Software Architecture}
 
 \author[1]{Daniel Koch}
 \author[2]{Sebastian Sergelius}
 \affil[1]{Address of first author}
-\affil[2]{Address of second author}
+\affil[2]{github.com/sebazai}
 
 \keywords{docker, software architecture, containers}
 
@@ -15,7 +16,6 @@ Please provide an abstract of no more than 300 words. Your abstract should expla
 \end{abstract}
 
 \begin{document}
-
 \flushbottom
 \maketitle
 \thispagestyle{empty}
@@ -25,21 +25,27 @@ Please provide an abstract of no more than 300 words. Your abstract should expla
 What is docker? What is it used for? What are containers and why use them? Maybe something about how popular docker has become. Does docker affect architecture?
 The purpose and the domain (what to use it for?);
 
-\section*{Methods and Materials}
-
-Guidelines can be included for standard research article sections, such as this one.
-
-\section*{ overview of the main functional features (what does it do for you?) if applicable}
+\section*{overview of the main functional features (what does it do for you?) if applicable}
 \label{sec:examples}
  overview of the main functional features (what does it do for you?) if applicable
 
-\subsection*{A technical overview (what is it?) }
+\subsection*{A technical overview (what is it?)}
 
 Techical overview
 
-\section*{The qualities (-ilities) that the TUS claims to support (what?) and justifications for the claims (how?)}
+Kelasin, että kirjoitetaan tänne vähän tosta mitä se vaatii namespacea cgrouppia jne ja sit vois niiden perusteella analysoida noita quality attributeja? En tiedä. Mitä mieltä olet? On jotenkin vaikea kirjoittaa -ilities, ilman että käy läpi tuon techin, enkä kyllä löydä hyviä lähteitäkään. 
 
-Explain something
+\section*{Docker Quality Attributes}
+
+The qualities (-ilities) that the TUS claims to support (what?) and justifications for the claims (how?)
+Based on how Docker is built, the system has some qualities hoisted in it. In this section we will 
+
+\subsection*{Portability}
+One key aspects of Docker is its Portability. With software portability we refer to the usability of the same software in different environments, such as the underlying operating system or hardware \citep{wiki:Software_portability}. Portability is achieved based on how the Docker technology is built. Each container includes all the dependencies required for the application to work and only requires an underlying operating system and infrastructure that supports the Docker Engine \citep{hy:DevOps_with_Docker}.
+\subsection*{Security}
+\subsection*{Scalability}
+\subsection*{Maintainability}
+
 
 \section*{What is it not suited for (any inherent limitations or reported issues) - may be challenging to research}
 
