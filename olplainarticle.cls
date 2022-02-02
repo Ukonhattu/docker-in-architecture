@@ -8,7 +8,7 @@
 \ProvidesClass{olplainarticle}[06/12/2015, v1.0]
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[english]{babel}
-
+\RequirePackage{csquotes}
 \RequirePackage{ifthen}
 \RequirePackage{calc}
 \AtEndOfClass{\RequirePackage{microtype}}
