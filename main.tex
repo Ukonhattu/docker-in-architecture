@@ -35,23 +35,30 @@ Containerization is commonly
 
 \section*{overview of the main functional features (what does it do for you?) if applicable}
 
-\subsection*{Docker Daemon}
+Tähän varmaan siitä virtuaalikoneista vs kontit, kuten miten se abstrahoi os level vs hardware?
+
+\section*{A technical overview (what is it?)}
+
+\section*{Docker Architecture}
+
+In this section we will be discussing the Docker architecture and its vital components that builds the technology under study. The Docker architecture is based on a client-server model where the client is called Docker client and the server is called Docker Host \citep{docker:overview}. The client and the host do not necessarily need to be on the same system, as the client can communicate with the host using the Docker REST API through either a UNIX socket or a network interface. 
 
 \subsection*{Docker Client}
+
+The Docker client is the component that the user interacts with. The client provides a command line interface (CLI) that enables the user to give commands to the Docker Host daemon.
+
+\subsection*{Docker Host}
+
+The Docker host contains of many components, such as the daemon, images, containers, networking and storage, that provides the environment for running and executing applications. 
+
 
 \subsection*{Docker Images}
 
 \subsection*{Docker Containers}
 
-
-\section*{A technical overview (what is it?)}
-
-\subsection*{Docker Architecture}
-Techical overview
-
 Kelasin, että kirjoitetaan tänne vähän tosta mitä se vaatii namespacea cgrouppia jne ja sit vois niiden perusteella analysoida noita quality attributeja? En tiedä. Mitä mieltä olet? On jotenkin vaikea kirjoittaa -ilities, ilman että käy läpi tuon techin, enkä kyllä löydä hyviä lähteitäkään. 
 
-\section*{ Quality Attributes}
+\section*{Quality Attributes}
 
 The qualities (-ilities) that the TUS claims to support (what?) and justifications for the claims (how?)
 Based on how Docker is built, the system has some qualities hoisted in it. In this section we will 
