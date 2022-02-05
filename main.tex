@@ -41,7 +41,7 @@ Tähän varmaan siitä virtuaalikoneista vs kontit, kuten miten se abstrahoi os 
 
 \section*{Docker Architecture}
 
-In this section we will be discussing the Docker architecture and its vital components that builds the technology under study. The Docker architecture is based on a client-server model where the client is called Docker client and the server is called Docker Host \citep{docker:overview}. The client and the host do not necessarily need to be on the same system, as the client can communicate with the host using the Docker REST API through either a UNIX socket or a network interface. 
+In this section we will be discussing the Docker architecture and its vital components that builds the technology under study. The Docker architecture is based on a client-server model where the client is called Docker client and the server is called Docker Host\cite{docker:overview, aquasec:docker_architecture}. The client and the host do not necessarily need to be on the same system, as the client can communicate with the host using the Docker REST API through either a UNIX socket or a network interface. Docker images are written in a Dockerfile, which defines the steps how to build and run the image. These built images can be stored in a private or public Docker registry.
 
 \subsection*{Docker Client}
 
@@ -49,14 +49,19 @@ The Docker client is the component that the user interacts with. The client prov
 
 \subsection*{Docker Host}
 
-The Docker host contains of many components, such as the daemon, images, containers, networking and storage, that provides the environment for running and executing applications. 
+The Docker host contains of many components, such as the daemon, images, containers, networking and storage, that provides the environment for running and executing applications\cite{aquasec:docker_architecture}. The daemon is responsible for handling container related commands that are received from the client, such as pulling pre-built images from a registry, executing instructions defined in a Dockerfile and building and running the containers on the server.
+
+\subsubsection*{Docker Images}
+
+Docker Images are read-only binary files that are used to build containers\cite{docker:overview}. Images are built using a Dockerfile that defines the instructions for the daemon to execute. Each instruction creates a layer in the image built. If an instruction is changed in the Dockerfile, the daemon will only rebuild the image on the layers affected by the change. Once the image is built, you can run the image in a container.
+
+\subsubsection*{Docker Containers}
+
+Docker Containers are isolated environments which runs applications\cite{aquasec:docker_architecture}. The container contains all the necessary dependencies that are required for running the application.
+
+\subsection*{Docker Registry}
 
 
-\subsection*{Docker Images}
-
-\subsection*{Docker Containers}
-
-Kelasin, että kirjoitetaan tänne vähän tosta mitä se vaatii namespacea cgrouppia jne ja sit vois niiden perusteella analysoida noita quality attributeja? En tiedä. Mitä mieltä olet? On jotenkin vaikea kirjoittaa -ilities, ilman että käy läpi tuon techin, enkä kyllä löydä hyviä lähteitäkään. 
 
 \section*{Quality Attributes}
 
