@@ -30,7 +30,7 @@ One formal definition is given by \cite{Jabbari_devops}:
 \end{displayquote}
 Another way to put DevOps is that it consists of the development of software and operations and that DevOps means that development, release, configuration, and monitoring are all done by the same people, rather than having separate teams for every part \citep{hy:DevOps_with_Docker}.
 
-Containerization is commonly
+Containerization is common as a part of DevOps. Docker is one of the most common containerization software (source?) since its release in 2013. In this technology brief, we will explain what is meant by containerizations, how it compares to virtual machines and how do you use docker as a part of software architecture.
 
 
 \section*{overview of the main functional features (what does it do for you?) if applicable}
@@ -66,14 +66,16 @@ A Docker registry is a service for storing and downloading images\cite{aquasec:d
 \section*{Quality Attributes}
 
 The qualities (-ilities) that the TUS claims to support (what?) and justifications for the claims (how?)
-Based on how Docker is built, the system has some qualities hoisted in it. In this section we will 
+Based on how Docker is built, the system has some qualities hoisted in it. In this section, we will 
 
 \subsection*{Portability}
-One key aspects of Docker is its Portability. With software portability we refer to the usability of the same software in different environments, such as the underlying operating system or hardware \citep{wiki:Software_portability}. Portability is achieved based on how the Docker technology is built. Each container includes all the dependencies required for the application to work and only requires an underlying operating system and infrastructure that supports the Docker Engine \citep{hy:DevOps_with_Docker}.
+One key aspect of Docker is its Portability. With software portability, we refer to the usability of the same software in different environments, such as the underlying operating system or hardware \citep{wiki:Software_portability}. Portability is achieved based on how the Docker technology is built. Each container includes all the dependencies required for the application to work and only requires an underlying operating system and infrastructure that supports the Docker Engine \citep{hy:DevOps_with_Docker}.
 \subsection*{Security}
+There was a paper about this in IEEE iirc, going to find it later. But at least with docker, your software is isolated from other software.
 \subsection*{Scalability}
+Scalability is one of the main selling points of Docker and especially if bundled with microservice architecture the scalability is great. With Docker, you can easily deploy as many containers of your service as you need and even adjust the number of containers during runtime.
 \subsection*{Maintainability}
-
+Docker separates all applications into their own virtual environments. With this, different applications don't interfere with other applications and each application can have all its dependencies easily and reliably every time without affecting other software. This allows different applications to use different versions of the same dependencies.
 
 \section*{What is it not suited for (any inherent limitations or reported issues) - may be challenging to research}
 
