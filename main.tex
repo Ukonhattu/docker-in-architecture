@@ -20,7 +20,7 @@ Please provide an abstract of no more than 300 words. Your abstract should expla
 \maketitle
 \thispagestyle{empty}
 
-\section*{Introduction}
+\section{Introduction}
 
 With the rise of DevOps and the use of Docker, containerization has become more and more relevant to think about even
 in software architecture. DevOps does not have any official definition.
@@ -33,59 +33,59 @@ Another way to put DevOps is that it consists of the development of software and
 Containerization is common as a part of DevOps. Docker is one of the most common containerization software (source?) since its release in 2013. In this technology brief, we will explain what is meant by containerizations, how it compares to virtual machines and how do you use docker as a part of software architecture.
 
 
-\section*{overview of the main functional features (what does it do for you?) if applicable}
+\section{overview of the main functional features (what does it do for you?) if applicable}
 
 Tähän varmaan siitä virtuaalikoneista vs kontit, kuten miten se abstrahoi os level vs hardware?
 
-\section*{A technical overview (what is it?)}
+\section{A technical overview (what is it?)}
 
-\section*{Docker Architecture}
+\section{Docker Architecture}
 
 In this section we will be discussing the Docker architecture and its vital components that builds the technology under study. The Docker architecture is based on a client-server model where the client is called Docker client and the server is called Docker Host\cite{docker:overview, aquasec:docker_architecture}. The client and the host do not necessarily need to be on the same system, as the client can communicate with the host using the Docker REST API through either a UNIX socket or a network interface. Docker images are written in a Dockerfile, which defines the steps how to build and run the image. These built images can be stored in a private or public Docker registry.
 
-\subsection*{Docker Client}
+\subsection{Docker Client}
 
 The Docker client is the component that the user interacts with. The client provides a command line interface (CLI) that enables the user to give commands to the Docker Host daemon.
 
-\subsection*{Docker Host}
+\subsection{Docker Host}
 
 The Docker host contains of many components, such as the daemon, images, containers, networking and storage, that provides the environment for running and executing applications\cite{aquasec:docker_architecture}. The daemon is responsible for handling container related commands that are received from the client, such as pulling pre-built images from a registry, executing instructions defined in a Dockerfile and building and running the containers on the server.
 
-\subsubsection*{Docker Images}
+\subsubsection{Docker Images}
 
 Docker Images are read-only binary files that are used to build containers\cite{docker:overview}. Images are built using a Dockerfile that defines the instructions for the daemon to execute. Each instruction creates a layer in the image built. If an instruction is changed in the Dockerfile, the daemon will only rebuild the image on the layers affected by the change. Once the image is built, you can run the image in a container.
 
-\subsubsection*{Docker Containers}
+\subsubsection{Docker Containers}
 
 Docker Containers are isolated environments which runs applications\cite{aquasec:docker_architecture}. The container contains all the necessary dependencies that are required for running the application. Running containers are isolated from other containers and also have a good isolation from the host machine\cite{docker:security}. Containers can be connected to networks and storages\cite{aquasec:docker_architecture}. The Docker environment has various options for defining the networking. <insert networking> here?
 
-\subsection*{Docker Registry}
+\subsection{Docker Registry}
 
-A Docker registry is a service for storing and downloading images\cite{aquasec:docker_architecture}. A registry can be publicly or privately hosted. Some most known public registries are Docker Hub and Docker Cloud.
+A Docker registry is a service for storing and downloading images\citep{aquasec:docker_architecture}. A registry can be publicly or privately hosted. Some most known public registries are Docker Hub and Docker Cloud.
 
-\section*{Quality Attributes}
+\section{Quality Attributes}
 
 The qualities (-ilities) that the TUS claims to support (what?) and justifications for the claims (how?)
 Based on how Docker is built, the system has some qualities hoisted in it. In this section, we will 
 
-\subsection*{Portability}
+\subsection{Portability}
 One key aspect of Docker is its Portability. With software portability, we refer to the usability of the same software in different environments, such as the underlying operating system or hardware \citep{wiki:Software_portability}. Portability is achieved based on how the Docker technology is built. Each container includes all the dependencies required for the application to work and only requires an underlying operating system and infrastructure that supports the Docker Engine \citep{hy:DevOps_with_Docker}.
-\subsection*{Security}
+\subsection{Security}
 There was a paper about this in IEEE iirc, going to find it later. But at least with docker, your software is isolated from other software.
-\subsection*{Scalability}
+\subsection{Scalability}
 Scalability is one of the main selling points of Docker and especially if bundled with microservice architecture the scalability is great. With Docker, you can easily deploy as many containers of your service as you need and even adjust the number of containers during runtime.
-\subsection*{Maintainability}
+\subsection{Maintainability}
 Docker separates all applications into their own virtual environments. With this, different applications don't interfere with other applications and each application can have all its dependencies easily and reliably every time without affecting other software. This allows different applications to use different versions of the same dependencies.
 
-\section*{What is it not suited for (any inherent limitations or reported issues) - may be challenging to research}
+\section{What is it not suited for (any inherent limitations or reported issues) - may be challenging to research}
 
 Perhaps
 
-\section*{Architectural impact - what aspect of application/system architecture is affected by using it and how?}
+\section{Architectural impact - what aspect of application/system architecture is affected by using it and how?}
 yes
-\section*{Tool support / automation provided (can be also from 3rd parties) to help application developers be more productive}
+\section{Tool support / automation provided (can be also from 3rd parties) to help application developers be more productive}
 
-\section*{Acknowledgments}
+\section{Acknowledgments}
 
 Additional information can be given in the template, such as to not include funder information in the acknowledgments section.
 
