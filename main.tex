@@ -57,7 +57,24 @@ Docker Images are read-only binary files that are used to build containers\cite{
 
 \subsubsection{Docker Containers}
 
-Docker Containers are isolated environments which runs applications\cite{aquasec:docker_architecture}. The container contains all the necessary dependencies that are required for running the application. Running containers are isolated from other containers and also have a good isolation from the host machine\cite{docker:security}. Containers can be connected to networks and storages\cite{aquasec:docker_architecture}. The Docker environment has various options for defining the networking. <insert networking> here?
+Docker Containers are isolated environments which runs applications\cite{aquasec:docker_architecture}. The container contains all the necessary dependencies that are required for running the application. Running containers are isolated from other containers and also have a good isolation from the host machine\cite{docker:security}. Containers can be connected to networks and storages.
+
+\subsubsection{Docker Networking}
+
+Docker uses iptables rules on Linux hosts to provide network isolation\cite{docker:iptables}. Linux iptables provides the possibility to restrict access for the Docker host, as by default, all external IPs are able to connect to a Docker host. Docker environment has several network drivers by default, such as\cite{docker:network}:
+
+\begin{itemize}
+    \item \textbf{bridge}: The default driver. Used when multiple containers on the same host need to communicate with eachother.
+    \item \textbf{host}: Containers use the Docker host's networking directly.
+    \item \textbf{overlay}: Used to connect multiple Docker daemons together. Should be used if two containers are on different Docker hosts.
+    \item \textbf{none}: Disables container networking.  
+\end{itemize}
+
+Docker also supports third-party network plugins, user-defined IP addressing and defining a MAC address to a container, so the container can be seen as a physical host in the network\cite{docker:network}.
+
+\subsubsection{Docker Storage}
+
+Data stored within the container are non-persistent and the data will disappear once the container stops running\cite{aquasec:docker_architecture}. For persistent storage Docker offer four options – Data Volumes, Data Volume Container, Directory Mounts and Storage plugins. Data volumes are located on the hosts file system and can be shared with many containers. A data volume container is a dedicated container that hosts a volume from the host. Each container using the volume connects to the container that hosts the persistent storage. Using Directory mounting, a container can have access to any folder on the host and with storage plugins containers can use persistent storage that is for example hosted on the cloud.
 
 \subsection{Docker Registry}
 
