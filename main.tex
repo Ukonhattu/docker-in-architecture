@@ -7,7 +7,7 @@
 \author[1]{Daniel Koch}
 \author[2]{Sebastian Sergelius}
 \affil[1]{daniel.koch@helsinki.fi}
-\affil[2]{github.com/sebazai}
+\affil[2]{sebastian.sergelius@helsinki.fi}
 
 \keywords{docker, software architecture, containers}
 
@@ -19,49 +19,46 @@ Please provide an abstract of no more than 300 words. Your abstract should expla
 \flushbottom
 \maketitle
 \thispagestyle{empty}
-
+\pagebreak
 \section{Introduction}
 
-With the rise of DevOps and the use of Docker, containerization has become more and more relevant to think about even
-in software architecture. DevOps does not have any official definition.
-One formal definition is given by\cite{Jabbari_devops}: 
+With the rise of DevOps and the use of Docker, containerization has become more and more relevant to think about even in software architecture. DevOps does not have any official definition.
+One formal definition is given by \cite{Jabbari_devops}: 
 \begin{displayquote}
 "DevOps is a development methodology aimed at bridging the gap between Development and Operations, emphasizing communication and collaboration, continuous integration, quality assurance and delivery with automated deployment utilizing a set of development practices".
 \end{displayquote}
 Another way to put DevOps is that it consists of the development of software and operations and that DevOps means that development, release, configuration, and monitoring are all done by the same people, rather than having separate teams for every part \citep{hy:DevOps_with_Docker}.
 
-Containerization is common as a part of DevOps. Docker is one of the most common containerization software (https://www.aquasec.com/cloud-native-academy/docker-container/docker-orchestration/) since its release in 2013. In this technology brief, we will explain what is meant by containerizations, how it compares to virtual machines and how do you use docker as a part of software architecture.
+Containerization is common as a part of DevOps. Docker is one of the most common containerization software since its release in 2013 \citep{aquasec:orchestration}. In this technology brief, we will explain what is meant by containerization, how it compares to virtual machines and how do you use docker as a part of software architecture.
 
 
 \section{overview of the main functional features (what does it do for you?) if applicable}
 
 Tähän varmaan siitä virtuaalikoneista vs kontit, kuten miten se abstrahoi os level vs hardware?
 
-\section{A technical overview (what is it?)}
-
 \section{Docker Architecture}
 
-In this section we will be discussing the Docker architecture and its vital components that builds the technology under study. The Docker architecture is based on a client-server model where the client is called Docker client and the server is called Docker Host\cite{docker:overview, aquasec:docker_architecture}. The client and the host do not necessarily need to be on the same system, as the client can communicate with the host using the Docker REST API through either a UNIX socket or a network interface. Docker images are written in a Dockerfile, which defines the steps how to build and run the image. These built images can be stored in a private or public Docker registry.
+In this section we will be discussing the Docker architecture and its vital components that builds the technology under study. The Docker architecture is based on a client-server model where the client is called Docker client and the server is called Docker Host \citep{docker:overview, aquasec:docker_architecture}. The client and the host do not necessarily need to be on the same system, as the client can communicate with the host using the Docker REST API through either a UNIX socket or a network interface. Docker images are written in a Dockerfile, which defines the steps how to build and run the image. These built images can be stored in a private or public Docker Registry.
 
 \subsection{Docker Client}
 
-The Docker client is the component that the user interacts with. The client provides a command line interface (CLI) that enables the user to give commands to the Docker Host daemon.
+The Docker client is the component that the user interacts with. The client provides a command line interface (CLI) that enables the user to give commands to the Docker Hosts daemon.
 
 \subsection{Docker Host}
 
-The Docker host contains of many components, such as the daemon, images, containers, networking and storage, that provides the environment for running and executing applications\cite{aquasec:docker_architecture}. The daemon is responsible for handling container related commands that are received from the client, such as pulling pre-built images from a registry, executing instructions defined in a Dockerfile and building and running the containers on the server.
+The Docker host contains of many components, such as the daemon, images, containers, networking and storage, that provides the environment for running and executing applications \citep{aquasec:docker_architecture}. The daemon is responsible for handling container related commands that are received from the client, such as pulling pre-built images from a registry, executing instructions defined in a Dockerfile and building and running the containers on the server.
 
 \subsubsection{Docker Images}
 
-Docker Images are read-only binary files that are used to build containers\cite{docker:overview}. Images are built using a Dockerfile that defines the instructions for the daemon to execute. Each instruction creates a layer in the image built. If an instruction is changed in the Dockerfile, the daemon will only rebuild the image on the layers affected by the change. Once the image is built, you can run the image in a container.
+Docker Images are read-only binary files that are used to build containers \citep{docker:overview}. Images are built using a Dockerfile that defines the instructions for the daemon to execute. Each instruction creates a layer in the image built. If an instruction is changed in the Dockerfile, the daemon will only rebuild the image on the layers affected by the change. Once the image is built, you can run the image in a container.
 
 \subsubsection{Docker Containers}
 
-Docker Containers are isolated environments which runs applications\cite{aquasec:docker_architecture}. The container contains all the necessary dependencies that are required for running the application. Running containers are isolated from other containers and also have a good isolation from the host machine\cite{docker:security}. Containers can be connected to networks and storages.
+Docker Containers are isolated environments which runs applications \citep{aquasec:docker_architecture}. The container contains all the necessary dependencies that are required for running the application. Running containers are isolated from other containers and also have a good isolation from the host machine \citep{docker:security}. Containers can be connected to networks and storages.
 
 \subsubsection{Docker Networking}
 
-Docker uses iptables rules on Linux hosts to provide network isolation\cite{docker:iptables}. Linux iptables provides the possibility to restrict access for the Docker host, as by default, all external IPs are able to connect to a Docker host. Docker environment has several network drivers by default, such as\cite{docker:network}:
+Docker uses iptables rules on Linux hosts to provide network isolation \citep{docker:iptables}. Linux iptables provides the possibility to restrict access for the Docker host, as by default, all external IPs are able to connect to a Docker host. Docker environment has several network drivers by default, such as \citep{docker:network}:
 
 \begin{itemize}
     \item \textbf{bridge}: The default driver. Used when multiple containers on the same host need to communicate with eachother.
@@ -70,15 +67,15 @@ Docker uses iptables rules on Linux hosts to provide network isolation\cite{dock
     \item \textbf{none}: Disables container networking.  
 \end{itemize}
 
-Docker also supports third-party network plugins, user-defined IP addressing and defining a MAC address to a container, so the container can be seen as a physical host in the network\cite{docker:network}.
+Docker also supports third-party network plugins, user-defined IP addressing and defining a MAC address to a container, so the container can be seen as a physical host in the network \citep{docker:network}.
 
 \subsubsection{Docker Storage}
 
-Data stored within the container are non-persistent and the data will disappear once the container stops running\cite{aquasec:docker_architecture}. For persistent storage Docker offer four options – Data Volumes, Data Volume Container, Directory Mounts and Storage plugins. Data volumes are located on the hosts file system and can be shared with many containers. A data volume container is a dedicated container that hosts a volume from the host. Each container using the volume connects to the container that hosts the persistent storage. Using Directory mounting, a container can have access to any folder on the host and with storage plugins containers can use persistent storage that is for example hosted on the cloud.
+Data stored within the container are non-persistent and the data will disappear once the container stops running \citep{aquasec:docker_architecture}. For persistent storage Docker offer four options – Data Volumes, Data Volume Container, Directory Mounts and Storage plugins. Data volumes are located on the hosts file system and can be shared with many containers. A data volume container is a dedicated container that hosts a volume from the host. Each container using the volume connects to the container that hosts the persistent storage. Using Directory mounting, a container can have access to any folder on the host and with storage plugins containers can use persistent storage that is for example hosted on the cloud.
 
 \subsection{Docker Registry}
 
-A Docker registry is a service for storing and downloading images\citep{aquasec:docker_architecture}. A registry can be publicly or privately hosted. Some most known public registries are Docker Hub and Docker Cloud.
+A Docker registry is a service for storing and downloading images \citep{aquasec:docker_architecture}. A registry can be publicly or privately hosted. Some most known public registries are Docker Hub and Docker Cloud.
 
 \section{Quality Attributes}
 
