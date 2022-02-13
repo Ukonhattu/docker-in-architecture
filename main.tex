@@ -22,6 +22,7 @@ Please provide an abstract of no more than 300 words. Your abstract should expla
 \maketitle
 \thispagestyle{empty}
 \pagebreak
+\tableofcontents
 \section{Introduction}
 
 With the rise of DevOps and the use of Docker, containerization has become more and more relevant to think about even in software architecture. DevOps does not have any official definition.
@@ -40,18 +41,18 @@ Tähän varmaan siitä virtuaalikoneista vs kontit, kuten miten se abstrahoi os 
 
 \section{Docker Architecture}
 
-In this section we will be discussing the Docker architecture and its vital components that builds the technology under study. The Docker architecture is based on a client-server model where the client is called Docker client and the server is called Docker Host \citep{docker:overview, aquasec:docker_architecture}. The client and the host do not necessarily need to be on the same system, as the client can communicate with the host using the Docker REST API through either a UNIX socket or a network interface. Docker images are written in a Dockerfile, which defines the steps how to build and run the image. These built images can be stored in a private or public Docker Registry.
+In this section we will be discussing the Docker architecture and its vital components that builds the technology under study. The Docker architecture is based on a client-server model where the client is called Docker client and the server is called Docker Host \citep{docker:overview, aquasec:docker_architecture}. The client and the host do not necessarily need to be on the same system, as the client can communicate with the host using the Docker REST API through either a UNIX socket or a network interface. Docker images are written in a Dockerfile, which defines the steps how to build and run the image in a container. These built images can be stored in a private or public Docker Registry.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.25\textwidth]{docker-overview}
+    \includegraphics[width=1\textwidth]{docker-overview}
     \caption{Overview of the Docker Architecture\cite{docker:overview}}
     \label{fig:overview}
 \end{figure}
 
 \subsection{Docker Client}
 
-The Docker client is the component that the user interacts with. The client provides a command line interface (CLI) that enables the user to give commands to the Docker Hosts daemon.
+The Docker Client is the application that the user uses to interact with the Docker environment \cite{aquasec:docker_architecture}. The client provides a command line interface (CLI) that enables the user to give commands to the Docker Hosts daemon. A client is able to communicate with many daemons.
 
 \subsection{Docker Host}
 
@@ -59,7 +60,7 @@ The Docker host contains of many components, such as the daemon, images, contain
 
 \subsubsection{Docker Images}
 
-Docker Images are read-only binary files that are used to build containers \citep{docker:overview}. Images are built using a Dockerfile that defines the instructions for the daemon to execute. Each instruction creates a layer in the image built. If an instruction is changed in the Dockerfile, the daemon will only rebuild the image on the layers affected by the change. Once the image is built, you can run the image in a container.
+Docker Images are read-only binary files that are used to build containers \citep{docker:overview}. Images are built using a Dockerfile that defines the instructions for the daemon to execute. Each instruction creates a layer in the image built. If an instruction is changed in the Dockerfile the daemon will only rebuild the image on the layers affected by the change. Once the image is built, you can run the image in a container. Each container can be saved as an image and images support versioning.
 
 \subsubsection{Docker Containers}
 
@@ -67,7 +68,7 @@ Docker Containers are isolated environments which runs applications \citep{aquas
 
 \subsubsection{Docker Networking}
 
-Docker uses iptables rules on Linux hosts to provide network isolation \citep{docker:iptables}. Linux iptables provides the possibility to restrict access for the Docker host, as by default, all external IPs are able to connect to a Docker host. Docker environment has several network drivers by default, such as \citep{docker:network}:
+Docker uses \textit{iptables} rules on Linux hosts to provide network isolation \citep{docker:iptables}. Linux iptables provides the possibility to restrict access for the Docker host, as by default, all external IPs are able to connect to a Docker host. Docker environment has several network drivers by default, such as \citep{docker:network}:
 
 \begin{itemize}
     \item \textbf{bridge}: The default driver. Used when multiple containers on the same host need to communicate with eachother.
@@ -89,10 +90,14 @@ A Docker registry is a service for storing and downloading images \citep{aquasec
 \section{Quality Attributes}
 
 The qualities (-ilities) that the TUS claims to support (what?) and justifications for the claims (how?)
-Based on how Docker is built, the system has some qualities hoisted in it. In this section, we will 
+
+Based on how Docker is built, the system has some qualities hoisted in it. In this section, we will list some important qualities from the architectural and agile perspective, if you decide to use Docker in your infrastructure. 
 
 \subsection{Portability}
 One key aspect of Docker is its Portability. With software portability, we refer to the usability of the same software in different environments, such as the underlying operating system or hardware \citep{wiki:Software_portability}. Portability is achieved based on how the Docker technology is built. Each container includes all the dependencies required for the application to work and only requires an underlying operating system and infrastructure that supports the Docker Engine \citep{hy:DevOps_with_Docker}.
+
+\subsection{Deployability}
+As Docker images are versionable, this gives the possibility to easily test, roll back and deploy applications\cite{hentsu:benefits}. As Docker images are smaller then Virtual Machine images, deploying an image to production is fast and results in a short downtime in a production environment. 
 
 \subsection{Security}
 There was a paper about this in IEEE iirc, going to find it later. But at least with docker, your software is isolated from other software.
@@ -103,13 +108,17 @@ Scalability is one of the main selling points of Docker and especially if bundle
 \subsection{Maintainability}
 Docker separates all applications into their own virtual environments. With this, different applications don't interfere with other applications and each application can have all its dependencies easily and reliably every time without affecting other software. This allows different applications to use different versions of the same dependencies.
 
-\section{What is it not suited for (any inherent limitations or reported issues) - may be challenging to research}
+\section{Architectural impact}
 
-Perhaps
+What aspect of application/system architecture is affected by using it and how?
 
-\section{Architectural impact - what aspect of application/system architecture is affected by using it and how?}
-yes
-\section{Tool support / automation provided (can be also from 3rd parties) to help application developers be more productive}
+\section{Limitations}
+
+What is it not suited for (any inherent limitations or reported issues)?
+
+\section{Docker Tools}
+
+Tool support / automation provided (can be also from 3rd parties) to help application developers be more productive
 
 \section{Acknowledgments}
 
