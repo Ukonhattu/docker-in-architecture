@@ -1,4 +1,6 @@
 \documentclass[fleqn,12pt]{olplainarticle}
+\usepackage{graphicx}
+\graphicspath{ {./} }
 % Use option lineno for line numbers 
 \renewcommand{\baselinestretch}{1.3}
 
@@ -39,6 +41,13 @@ Tähän varmaan siitä virtuaalikoneista vs kontit, kuten miten se abstrahoi os 
 \section{Docker Architecture}
 
 In this section we will be discussing the Docker architecture and its vital components that builds the technology under study. The Docker architecture is based on a client-server model where the client is called Docker client and the server is called Docker Host \citep{docker:overview, aquasec:docker_architecture}. The client and the host do not necessarily need to be on the same system, as the client can communicate with the host using the Docker REST API through either a UNIX socket or a network interface. Docker images are written in a Dockerfile, which defines the steps how to build and run the image. These built images can be stored in a private or public Docker Registry.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.25\textwidth]{docker-overview}
+    \caption{Overview of the Docker Architecture\cite{docker:overview}}
+    \label{fig:overview}
+\end{figure}
 
 \subsection{Docker Client}
 
@@ -84,10 +93,13 @@ Based on how Docker is built, the system has some qualities hoisted in it. In th
 
 \subsection{Portability}
 One key aspect of Docker is its Portability. With software portability, we refer to the usability of the same software in different environments, such as the underlying operating system or hardware \citep{wiki:Software_portability}. Portability is achieved based on how the Docker technology is built. Each container includes all the dependencies required for the application to work and only requires an underlying operating system and infrastructure that supports the Docker Engine \citep{hy:DevOps_with_Docker}.
+
 \subsection{Security}
 There was a paper about this in IEEE iirc, going to find it later. But at least with docker, your software is isolated from other software.
+
 \subsection{Scalability}
 Scalability is one of the main selling points of Docker and especially if bundled with microservice architecture the scalability is great. With Docker, you can easily deploy as many containers of your service as you need and even adjust the number of containers during runtime.
+
 \subsection{Maintainability}
 Docker separates all applications into their own virtual environments. With this, different applications don't interfere with other applications and each application can have all its dependencies easily and reliably every time without affecting other software. This allows different applications to use different versions of the same dependencies.
 
