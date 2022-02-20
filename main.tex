@@ -14,7 +14,9 @@
 \keywords{docker, software architecture, containers}
 
 \begin{abstract}
-Please provide an abstract of no more than 300 words. Your abstract should explain the main contributions of your article, and should not contain any material that is not included in the main text. 
+Docker is currently very popular in software development and software deployment. It promises many advantages that are relevant in modern
+software development, like scalability, maintainability, security, and portability. In this report, we study the architecture of Docker as well as Docker's
+architectural impact on software development.
 \end{abstract}
 
 \begin{document}
@@ -35,9 +37,17 @@ Another way to put DevOps is that it consists of the development of software and
 Containerization is common as a part of DevOps. Docker is one of the most common containerization software since its release in 2013 \citep{aquasec:orchestration}. In this technology brief, we will explain what is meant by containerization, how it compares to virtual machines and how do you use docker as a part of software architecture.
 
 
-\section{overview of the main functional features (what does it do for you?) if applicable}
+\section{Docker and virtual machines}
 
-Tähän varmaan siitä virtuaalikoneista vs kontit, kuten miten se abstrahoi os level vs hardware?
+Virtualization is a much older technology than Docker and virtual machines have been used for decades. To understand Docker a bit better, we need to compare
+it to virtual machines because it is important to understand that docker is not the same thing as a virtual machine. We can see the largest difference between Docker and virtual machines in Figure 1: Virtual machines always have their own Guest OS, but Docker does not. This means that with every virtual machine we need to ship a complete OS with them, but Docker uses the underlying OS through the Docker Engine. Therefore, shipping multiple Docker containers is much lighter than shipping multiple virtual machines. However, virtual machines give you more freedom and easier configurability. In real-world cases, they are usually used together in cloud environments: The client has a virtual machine on the cloud and runs multiple Docker containers on the virtual machine.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{docker_vs_vm.png}
+    \caption{Docker vs. virtual machines \cite{docker:vs_vm}}
+    \label{fig:overview}
+\end{figure}
 
 \section{Docker Architecture}
 
@@ -104,7 +114,14 @@ One key aspect of Docker is its Portability. With software portability, we refer
 As Docker images are versionable, this gives the possibility to easily test, roll back and deploy applications\cite{hentsu:benefits}. As Docker images are smaller then Virtual Machine images, deploying an image to production is fast and results in a short downtime when deploying to production environment. 
 
 \subsection{Security}
-There was a paper about this in IEEE iirc, going to find it later. But at least with docker, your software is isolated from other software.
+Docker promises some security advantages \citep{docker:security}:
+\begin{itemize}
+    \item  Docker namespace is isolated from other programs on the machine. It cannot access other software namespaces and other software cannot access Docker's namespaces. 
+    \item Each container has its own network stack and doesn't get privileged access to other containers' sockets.
+    \item Docker utilizes control groups. For security, this means that a single container cannot bring the machine down even if it tried to. (Performance wise)
+    
+\end{itemize}
+
 
 \subsection{Scalability}
 Scalability is one of the main selling points of Docker and especially if bundled with microservice architecture the scalability is great. With Docker, you can easily deploy as many containers of your service as you need and even adjust the number of containers during runtime.
