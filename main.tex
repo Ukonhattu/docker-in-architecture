@@ -56,13 +56,13 @@ In this section we will be discussing the Docker architecture and its vital comp
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\textwidth]{docker-overview}
-    \caption{Overview of the Docker Architecture where we can see the vital components (Client, Host and Registry) and the sub components they provide \cite{docker:overview}}
+    \caption{Overview of the Docker Architecture where we can see the vital components (Client, Host and Registry) and the sub components they provide \citep{docker:overview}}
     \label{fig:overview}
 \end{figure}
 
 \subsection{Docker Client}
 
-The Docker Client is the application that the user uses to interact with the Docker environment \cite{aquasec:docker_architecture}. The client provides a command line interface (CLI) that enables the user to give commands to the Docker Hosts daemon. A client is able to communicate with many daemons.
+The Docker Client is the application that the user uses to interact with the Docker environment \citep{aquasec:docker_architecture}. The client provides a command line interface (CLI) that enables the user to give commands to the Docker Hosts daemon. A client is able to communicate with many daemons.
 
 \subsection{Docker Host}
 
@@ -103,15 +103,13 @@ A Docker registry is a service for storing and downloading images \citep{aquasec
 
 The qualities (-ilities) that the TUS claims to support (what?) and justifications for the claims (how?)
 
-\textbf{Highlight one quality (-ility) that the TUS claims to support; give some examples that can justify the claim}
-
 Based on how Docker is built, the system has some qualities hoisted in it. In this section, we will list some important qualities from the architectural and agile perspective, if you decide to use Docker in your infrastructure. 
 
 \subsection{Portability}
 One key aspect of Docker is its Portability. With software portability, we refer to the usability of the same software in different environments, such as the underlying operating system or hardware \citep{wiki:Software_portability}. Portability is achieved based on how the Docker technology is built. Each container includes all the dependencies required for the application to work and only requires an underlying operating system and infrastructure that supports the Docker Engine \citep{hy:DevOps_with_Docker}.
 
 \subsection{Deployability}
-As Docker images are versionable, this gives the possibility to easily test, roll back and deploy applications\cite{hentsu:benefits}. As Docker images are smaller then Virtual Machine images, deploying an image to production is fast and results in a short downtime when deploying to production environment. 
+As Docker images are versionable, this gives the possibility to easily test, roll back and deploy applications\citep{hentsu:benefits}. As Docker images are smaller then Virtual Machine images, deploying an image to production is fast and results in a short downtime when deploying to production environment. 
 
 \subsection{Security}
 Docker promises some security advantages \citep{docker:security}:
@@ -139,6 +137,7 @@ https://devopswithdocker.com/part-1/1-getting-started
 \section{Limitations}
 
 What is it not suited for (any inherent limitations or reported issues)?
+Docker is not suited for simple applications or  
 
 \section{Docker Tools}
 
@@ -147,10 +146,6 @@ Docker Engine is available on the common operating system, such as Windows, MacO
 Docker Desktop for Windows uses the Windows Subsystem for Linux 2 (WSL2) or Hyper-V hypervisor and Windows Containers feature, which is available on the most recent versions of 64-bit Windows 10 and 11\cite{docker:windows}.
 
 Tool support / automation provided (can be also from 3rd parties) to help application developers be more productive
-
-\section{Acknowledgments}
-
-Additional information can be given in the template, such as to not include funder information in the acknowledgments section.
 
 \bibliography{sample}
 
