@@ -42,6 +42,8 @@ Containerization is common as a part of DevOps. Docker is one of the most common
 Virtualization is a much older technology than Docker and virtual machines have been used for decades. To understand Docker a bit better, we need to compare
 it to virtual machines because it is important to understand that docker is not the same thing as a virtual machine. We can see the largest difference between Docker and virtual machines in Figure 1: Virtual machines always have their own Guest OS, but Docker does not. This means that with every virtual machine we need to ship a complete OS with them, but Docker uses the underlying OS through the Docker Engine. Therefore, shipping multiple Docker containers is much lighter than shipping multiple virtual machines. However, virtual machines give you more freedom and easier configurability. In real-world cases, they are usually used together in cloud environments: The client has a virtual machine on the cloud and runs multiple Docker containers on the virtual machine.
 
+[Parantele, lisää tekstiä?]
+
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\textwidth]{docker_vs_vm.png}
@@ -119,7 +121,7 @@ Docker promises some security advantages \citep{docker:security}:
     \item Docker utilizes control groups. For security, this means that a single container cannot bring the machine down even if it tried to. (Performance wise)
     
 \end{itemize}
-
+[käsittele docker security research paper \citep{docker_security_paper}]
 
 \subsection{Scalability}
 Scalability is one of the main selling points of Docker and especially if bundled with microservice architecture the scalability is great. With Docker, you can easily deploy as many containers of your service as you need and even adjust the number of containers during runtime.
@@ -129,10 +131,17 @@ Docker separates all applications into their own virtual environments. With this
 
 \section{Architectural impact}
 
-What aspect of application/system architecture is affected by using it and how?
+[What aspect of application/system architecture is affected by using it and how?
 Architectural impact - give an example of how the application/system architecture is affected by using it
 https://devopswithdocker.com/part-1/1-getting-started
-"Works on my machine", different versions for different containers, isolation?
+"Works on my machine", different versions for different containers, isolation?]
+
+Docker is mainly a tool for development and deployment. The application itself doesn't necessarily know if it is run on a physical machine, a virtual machine, or in a Docker container. Therefore, Docker does not absolutely have any impact on the software architecture. However, Docker excels with running multiple containers at the same time easily and therefore is a great tool for developing and deploying software with microservices architecture. This leads to the fact
+that constructing microservices software becomes much less cumbersome and more easily configurable, so Docker allows people to make microservices more easily, making it a great pattern to develop and test and thus has an indirect architectural impact.
+
+[here for developtment]
+[here for isolation]
+[here for different versions of the same dependencies in different containers on the same software]
 
 \section{Limitations}
 
