@@ -17,7 +17,7 @@
 Docker is currently very popular in software development and software deployment. It promises many advantages that are relevant in modern
 software development, like scalability, maintainability, security, and portability. In this report, we study the architecture of Docker as well as Docker's
 architectural impact on software development.
-Writers defined with initials on sections and/or subsections.
+Writers are defined with initials on sections and/or subsections.
 \end{abstract}
 
 \begin{document}
@@ -37,7 +37,7 @@ Another way to put DevOps is that it consists of the development of software and
 
 Containerization is common as a part of DevOps. Docker is one of the most common containerization software since its release in 2013 \citep{aquasec:orchestration}. In this technology brief, we will explain what is meant by containerization, how it compares to virtual machines and how do you use docker as a part of software architecture. 
 
-We will start by comparing Docker and Virtual Machines in chapter 2. In chapter 3 we examine the technical components of the thing under study. Chapter 4 describes the qualities that Docker has hoisted in it following by the architectural impact in chapter 5. The last two chapters, 6 and 7, will be on the limitations of Docker and tools that are available.
+We will start by comparing Docker and Virtual Machines in chapter 2. In chapter 3 we examine the technical components of the thing under study. Chapter 4 describes the qualities that Docker has hoisted in it followed by the architectural impact in chapter 5. The last two chapters, 6 and 7, will be on the limitations of Docker and the tools that are available.
 
 
 \section{Docker and virtual machines (DK)}
@@ -57,22 +57,22 @@ it to virtual machines because it is important to understand that docker is not 
 
 \section{Docker Architecture (SS)}
 
-In this section we will be discussing the Docker architecture and its vital components that builds the technology under study. The Docker architecture is based on a client-server model where the client is called Docker client and the server is called Docker Host \citep{docker:overview, aquasec:docker_architecture}. The client and the host do not necessarily need to be on the same system, as the client can communicate with the host using the Docker REST API through either a UNIX socket or a network interface. Docker images are written in a Dockerfile, which defines the steps how to build and run the image in a container. These built images can be stored in a private or public Docker Registry.
+In this section, we will be discussing the Docker architecture and its vital components that build the technology under study. The Docker architecture is based on a client-server model where the client is called Docker client and the server is called Docker Host \citep{docker:overview, aquasec:docker_architecture}. The client and the host do not necessarily need to be on the same system, as the client can communicate with the host using the Docker REST API through either a UNIX socket or a network interface. Docker images are written in a Dockerfile, which defines the steps of how to build and run the image in a container. These built images can be stored in a private or public Docker Registry.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=1\textwidth]{docker-overview}
-    \caption{Overview of the Docker Architecture where we can see the vital components (Client, Host and Registry) and the sub components they provide \citep{docker:overview}}
+    \caption{Overview of the Docker Architecture where we can see the vital components (Client, Host, and Registry) and the sub-components they provide \citep{docker:overview}}
     \label{fig:overview}
 \end{figure}
 
 \subsection{Docker Client}
 
-The Docker Client is the application that the user uses to interact with the Docker environment \citep{aquasec:docker_architecture}. The client provides a command line interface (CLI) that enables the user to give commands to the Docker Hosts daemon. A client is able to communicate with many daemons.
+The Docker Client is the application that the user uses to interact with the Docker environment \citep{aquasec:docker_architecture}. The client provides a command-line interface (CLI) that enables the user to give commands to the Docker Hosts daemon. A client is able to communicate with many daemons.
 
 \subsection{Docker Host}
 
-The Docker host contains of many components, such as the daemon, images, containers, networking and storage, that provides the environment for running and executing applications \citep{aquasec:docker_architecture}. The daemon is responsible for handling container related commands that are received from the client, such as pulling pre-built images from a registry, executing instructions defined in a Dockerfile and building and running the containers on the server.
+The Docker host contains many components, such as the daemon, images, containers, networking, and storage, that provide the environment for running and executing applications \citep{aquasec:docker_architecture}. The daemon is responsible for handling container-related commands that are received from the client, such as pulling pre-built images from a registry, executing instructions defined in a Dockerfile, and building and running the containers on the server.
 
 \subsubsection{Docker Images}
 
@@ -80,26 +80,26 @@ Docker Images are read-only binary files that are used to build containers \cite
 
 \subsubsection{Docker Containers}
 
-Docker Containers are isolated environments which runs applications \citep{aquasec:docker_architecture}. The container contains all the necessary dependencies that are required for running the application. Running containers are isolated from other containers and also have a good isolation from the host machine \citep{docker:security}. Containers can be connected to networks and storages and in this way the isolation to the host machine can be configured.
+Docker Containers are isolated environments that run applications \citep{aquasec:docker_architecture}. The container contains all the necessary dependencies that are required for running the application. Running containers are isolated from other containers and also have good isolation from the host machine \citep{docker:security}. Containers can be connected to networks and storage and in this way, the isolation to the host machine can be configured.
 
 \subsubsection{Docker Networking}
 
-Docker uses \textit{iptables} rules on Linux hosts to provide network isolation \citep{docker:iptables}. Linux iptables provides the possibility to restrict access for the Docker host, as by default, all external IPs are able to connect to a Docker host. Docker environment has several network drivers by default, such as \citep{docker:network}:
+Docker uses \textit{iptables} rules on Linux hosts to provide network isolation \citep{docker:iptables}. Linux iptables provide the possibility to restrict access for the Docker host, as by default, all external IPs are able to connect to a Docker host. Docker environment has several network drivers by default, such as \citep{docker:network}:
 
 \begin{itemize}
-    \item \textbf{bridge}: The default driver. Used when multiple containers on the same host need to communicate with eachother.
+    \item \textbf{bridge}: The default driver. Used when multiple containers on the same host need to communicate with each other.
     \item \textbf{host}: Containers use the Docker host's networking layer directly.
     \item \textbf{overlay}: Used to connect multiple Docker daemons together. Should be used if two containers are on different Docker hosts.
     \item \textbf{none}: Disables container networking.  
 \end{itemize}
 
-Docker also supports third-party network plugins, user-defined IP addressing and defining a MAC address to a container, so the container can be seen as a physical host in the network \citep{docker:network}.
+Docker also supports third-party network plugins, user-defined IP addressing, and defining a MAC address to a container, so the container can be seen as a physical host in the network \citep{docker:network}.
 
 \subsubsection{Docker Storage}
 
-Data stored within the container are non-persistent and the data will disappear once the container stops running \citep{aquasec:docker_architecture}. For persistent storage Docker offer four options – Data Volumes, Data Volume Container, Directory Mounts and Storage plugins. 
+Data stored within the container are non-persistent and the data will disappear once the container stops running \citep{aquasec:docker_architecture}. For persistent storage, Docker offer four options – Data Volumes, Data Volume Container, Directory Mounts and Storage plugins. 
 
-Data volumes are located on the hosts file system and can be shared with many containers. A data volume container is a dedicated container that hosts a volume from the host. Each container using the volume connects to the container that hosts the persistent storage. Using Directory mounting, a container can have access to any folder on the host and with storage plugins containers can use persistent storage that is for example hosted on the cloud.
+Data volumes are located on the host's file system and can be shared with many containers. A data volume container is a dedicated container that hosts a volume from the host. Each container using the volume connects to the container that hosts the persistent storage. Using Directory mounting, a container can have access to any folder on the host and with storage plugins, containers can use persistent storage that is for example hosted on the cloud.
 
 \subsection{Docker Registry}
 
@@ -116,7 +116,7 @@ Based on how Docker is built, the system has some qualities hoisted in it. In th
 One key aspect of Docker is its Portability. With software portability, we refer to the usability of the same software in different environments, such as the underlying operating system or hardware \citep{wiki:Software_portability}. Portability is achieved based on how the Docker technology is built. Each container includes all the dependencies required for the application to work and only requires an underlying operating system and infrastructure that supports the Docker Engine \citep{hy:DevOps_with_Docker}.
 
 \subsection{Deployability (SS)}
-As Docker images are versionable, this gives the possibility to easily test, roll back and deploy applications\citep{hentsu:benefits}. As Docker images are smaller then Virtual Machine images, deploying an image to production is fast and results in a short downtime when deploying to production environment. 
+As Docker images are versionable, this gives the possibility to easily test, roll back and deploy applications\citep{hentsu:benefits}. As Docker images are smaller than Virtual Machine images, deploying an image to production is fast and results in a short downtime when deploying to a production environment. 
 
 \subsection{Security (DK)}
 Docker promises some security advantages if configured correctly \citep{docker:security}:
@@ -150,13 +150,13 @@ that constructing microservices software becomes much less cumbersome and more e
 
 \section{Limitations (SS)}
 
-As Docker adds a layer between the container and the host kernel it doesn't suit well if you need to get full performance from your underlying hardware, although it still more lightweight then VMs\citep{cloudsavvy:not_to_use}. Comparison to virtual machines, containers are not able to run different operating systems that would require a different kernel than the underlying host machine. For simple monolith architectures and desktop applications with high graphical requirements Docker containerisation does not offer the possible qualities that the Docker orchestration and containerization provides.
+As Docker adds a layer between the container and the host kernel it doesn't suit well if you need to get full performance from your underlying hardware, although it is still more lightweight than VMs\citep{cloudsavvy:not_to_use}. In comparison to virtual machines, containers are not able to run different operating systems that would require a different kernel than the underlying host machine. For simple monolith architectures and desktop applications with high graphical requirements, Docker containerization does not offer the possible qualities that the Docker orchestration and containerization provide.
 
 [Perhaps something on architectural impact and/or more on the graphical part]
 
 \section{Docker Tools (SS)}
 
-Docker Engine is available on the common operating system, such as Windows, MacOS and Linux distributions, and on the most common processor architectures, i.e. x86\_64, amd64, arm and aarch64 \cite{docker:install}.  On Windows and Mac the Docker tool set that contains all the necessary components to run Docker is called Docker Desktop. Currently for Linux they are developing this same tool set as well. With the help of Docker tools developers are able to run, terminate, build and manage images and containers easily without the need to install any additional programs to run an application on their local machine.
+Docker Engine is available on the common operating system, such as Windows, macOS, and Linux distributions, and on the most common processor architectures, i.e. x86\_64, amd64, arm, and aarch64 \cite{docker:install}.  On Windows and Mac, the Docker toolset that contains all the necessary components to run Docker is called Docker Desktop. Currently, for Linux, they are developing this same toolset as well. With the help of Docker tools, developers are able to run, terminate, build and manage images and containers easily without the need to install any additional programs to run an application on their local machine.
 
 Docker Desktop for Windows uses the Windows Subsystem for Linux 2 (WSL2) or Hyper-V hypervisor and Windows Containers feature, which is available on the most recent versions of 64-bit Windows 10 and 11\cite{docker:windows}.
 
