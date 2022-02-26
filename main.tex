@@ -35,15 +35,15 @@ One formal definition is given by \cite{Jabbari_devops}:
 \end{displayquote}
 Another way to put DevOps is that it consists of the development of software and operations and that DevOps means that development, release, configuration, and monitoring are all done by the same people, rather than having separate teams for every part \citep{hy:DevOps_with_Docker}.
 
-Containerization is common as a part of DevOps. Docker is one of the most common containerization software since its release in 2013 \citep{aquasec:orchestration}. In this technology brief, we will explain what is meant by containerization, how it compares to virtual machines and how do you use docker as a part of software architecture. 
+Containerization is common as a part of DevOps. Docker is one of the most common containerization software since its release in 2013 \citep{aquasec:orchestration}. Docker is a product that enables you to easily develop, ship and run your application on different infrastructures by using OS-level virtualization \citep{docker:overview}. In this technology brief, we will explain what is meant by containerization, how it compares to virtual machines and how do you use docker as a part of software architecture. 
 
 We will start by comparing Docker and Virtual Machines in chapter 2. In chapter 3 we examine the technical components of the thing under study. Chapter 4 describes the qualities that Docker has hoisted in it followed by the architectural impact in chapter 5. The last two chapters, 6 and 7, will be on the limitations of Docker and the tools that are available.
 
 
-\section{Docker and virtual machines (DK)}
+\section{Docker containers and virtual machines (DK)}
 
 Virtualization is a much older technology than Docker and virtual machines have been used for decades. To understand Docker a bit better, we need to compare
-it to virtual machines because it is important to understand that docker is not the same thing as a virtual machine. We can see the largest difference between Docker and virtual machines in Figure 1: Virtual machines always have their own Guest OS, but Docker does not. This means that with every virtual machine we need to ship a complete OS with them, but Docker uses the underlying OS through the Docker Engine. Therefore, shipping multiple Docker containers is much lighter than shipping multiple virtual machines. However, virtual machines give you more freedom and easier configurability. In real-world cases, they are usually used together in cloud environments: The client has a virtual machine on the cloud and runs multiple Docker containers on the virtual machine.
+it to virtual machines because it is important to understand that docker is not the same thing as a virtual machine. We can see the largest difference between Docker and virtual machines in Figure \ref{fig:dockervsvm}: Virtual machines always have their own Guest OS, but Docker does not. This means that with every virtual machine we need to ship a complete OS with them, but Docker uses the underlying OS through the Docker Engine. Therefore, shipping multiple Docker containers is much lighter than shipping multiple virtual machines. However, virtual machines give you more freedom and easier configurability. In real-world cases, they are usually used together in cloud environments: The client has a virtual machine on the cloud and runs multiple Docker containers on the virtual machine.
 
 [Enhance, more text?]
 [Should we have something here on namespaces, LXC/runC?]
@@ -57,7 +57,7 @@ it to virtual machines because it is important to understand that docker is not 
 
 \section{Docker Architecture (SS)}
 
-In this section, we will be discussing the Docker architecture and its vital components that build the technology under study. The Docker architecture is based on a client-server model where the client is called Docker client and the server is called Docker Host \citep{docker:overview, aquasec:docker_architecture}. The client and the host do not necessarily need to be on the same system, as the client can communicate with the host using the Docker REST API through either a UNIX socket or a network interface. Docker images are written in a Dockerfile, which defines the steps of how to build and run the image in a container. These built images can be stored in a private or public Docker Registry.
+In this section, we will be discussing the Docker architecture and its vital components that build the technology under study. The Docker architecture is based on a client-server model where the client is called Docker client and the server is called Docker Host, see Figure \ref{fig:overview} \citep{docker:overview, aquasec:docker_architecture}. The client and the host do not necessarily need to be on the same system, as the client can communicate with the host using the Docker REST API through either a UNIX socket or a network interface. Docker images are specified in a Dockerfile, which defines the steps of how to build and run the image in a container. These built images can be stored in a private or public Docker Registry.
 
 \begin{figure}[h]
     \centering
@@ -76,7 +76,7 @@ The Docker host contains many components, such as the daemon, images, containers
 
 \subsubsection{Docker Images}
 
-Docker Images are read-only binary files that are used to build containers \citep{docker:overview}. Images are built using a Dockerfile that defines the instructions for the daemon to execute. Each instruction creates a layer in the image built. If an instruction is changed in the Dockerfile the daemon will only rebuild the image on the layers affected by the change. Once the image is built, you can run the image in a container. Each container can be saved as an image and images support versioning.
+Docker Images are read-only binary files that are used to build containers \citep{docker:overview}. Images are built using a Dockerfile that defines the instructions for the daemon to execute. Each instruction creates a layer in the image built. A layer can be thought as a small image inside the larger image that is being built. If an instruction is changed in the Dockerfile the daemon will only rebuild the image on the layers affected by the change, thus speeding up the process of creating containers from slightly modified images. Once the image is built, you can run the image in a container. Each container can be saved as an image and images support versioning.
 
 \subsubsection{Docker Containers}
 
