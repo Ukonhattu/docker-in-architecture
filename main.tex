@@ -45,8 +45,7 @@ We will start by comparing Docker and Virtual Machines in chapter 2. In chapter 
 Virtualization is a much older technology than Docker and virtual machines have been used for decades. To understand Docker a bit better, we need to compare
 it to virtual machines because it is important to understand that docker is not the same thing as a virtual machine. We can see the largest difference between Docker and virtual machines in Figure \ref{fig:dockervsvm}: Virtual machines always have their own Guest OS, but Docker does not. This means that with every virtual machine we need to ship a complete OS with them, but Docker uses the underlying OS through the Docker Engine. Therefore, shipping multiple Docker containers is much lighter than shipping multiple virtual machines. However, virtual machines give you more freedom and easier configurability. In real-world cases, they are usually used together in cloud environments: The client has a virtual machine on the cloud and runs multiple Docker containers on the virtual machine.
 
-[Enhance, more text?]
-[Should we have something here on namespaces, LXC/runC?]
+The Docker product uses many features from the Linux kernel for delivering OS-level virtualization, the most important ones being namespaces and control groups \citep{docker:security}. Kernel namespaces provide an isolation for containers so that they can not affect other processes running on the host machine or in another container. Control groups are used for creating a fair share of computational resources for each container running on the host machine. Control groups also makes sure that a container can not crash the host machine by overusing computational resources, such as disk I/O, memory or CPU. Each container also has its own network stack, so that it can not access other containers sockets and interfaces.
 
 \begin{figure}[h]
     \centering
