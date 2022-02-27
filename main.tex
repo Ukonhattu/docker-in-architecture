@@ -125,7 +125,6 @@ Docker promises some security advantages if configured correctly \citep{docker:s
     \item Docker utilizes control groups. For security, this means that a single container cannot bring the machine down even if it tried to. (Performance wise)
     
 \end{itemize}
-[käsittele docker security research paper \citep{docker_security_paper}]
 
 \subsection{Scalability (DK)}
 Scalability is one of the main selling points of Docker and especially if bundled with microservice architecture the scalability is great. With Docker, you can easily deploy as many containers of your service as you need and even adjust the number of containers during runtime.
@@ -133,19 +132,22 @@ Scalability is one of the main selling points of Docker and especially if bundle
 \subsection{Maintainability (DK)}
 Docker separates all applications into their own virtual environments. With this, different applications don't interfere with other applications and each application can have all its dependencies easily and reliably every time without affecting other software. This allows different applications to use different versions of the same dependencies.
 
+\subsection{Resiliency (DK)}
+Docker brings good resiliency/recoveriability to software. If new version of the software has problems in production, it is easy to just rollback to the old 
+container that was working without problems. Redeploying containers is also easy if something in the container crashes.
+
 \section{Architectural impact (DK)}
 
-[What aspect of application/system architecture is affected by using it and how?
-Architectural impact - give an example of how the application/system architecture is affected by using it
-https://devopswithdocker.com/part-1/1-getting-started
-"Works on my machine", different versions for different containers, isolation?]
 
 Docker is mainly a tool for development and deployment. The application itself doesn't necessarily know if it is run on a physical machine, a virtual machine, or in a Docker container. Therefore, Docker does not absolutely have any impact on the software architecture. However, Docker excels with running multiple containers at the same time easily and therefore is a great tool for developing and deploying software with microservices architecture. This leads to the fact
 that constructing microservices software becomes much less cumbersome and more easily configurable, so Docker allows people to make microservices more easily, making it a great pattern to develop and test and thus has an indirect architectural impact.
 
-[here for developtment]
-[here for isolation]
-[here for different versions of the same dependencies in different containers on the same software]
+Docker ensures that the software is isolated from other software. This means that we don't have to think about how other software running on the same namespace or file system could affect out software nor how our software could affect other software or other parts of itself. This also makes the software more secure.
+In addition, since every part of the software is run in their own virutual environment, the container, we can have different parts of the software to use different versions of the same dependencies.
+
+For development, since every dependency is defined in the image and is run within the container, everybody should have exact same development environment as what is used in production. This prevents bugs that happen because people have different configurations on their on machine which leads to "works on my machine" situations.
+
+
 
 \section{Limitations (SS)}
 
