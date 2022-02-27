@@ -149,17 +149,19 @@ that constructing microservices software becomes much less cumbersome and more e
 
 \section{Limitations (SS)}
 
-As Docker adds a layer between the container and the host kernel it doesn't suit well if you need to get full performance from your underlying hardware, although it is still more lightweight than VMs\citep{cloudsavvy:not_to_use}. In comparison to virtual machines, containers are not able to run different operating systems that would require a different kernel than the underlying host machine. For simple monolith architectures and desktop applications with high graphical requirements, Docker containerization does not offer the possible qualities that the Docker orchestration and containerization provide.
+As Docker adds a layer between the container and the host kernel it doesn't suit well if you need to get full performance from your underlying hardware, although it is still more lightweight than VMs \citep{cloudsavvy:not_to_use}. In comparison to virtual machines, containers are not able to run different operating systems that would require a different kernel than the underlying host machine. For simple monolith architectures and desktop applications with high graphical requirements, Docker containerization does not offer the possible qualities that the Docker orchestration and containerization provide.
 
 [Perhaps something on architectural impact and/or more on the graphical part]
 
 \section{Docker Tools (SS)}
 
-Docker Engine is available on the common operating system, such as Windows, macOS, and Linux distributions, and on the most common processor architectures, i.e. x86\_64, amd64, arm, and aarch64 \cite{docker:install}.  On Windows and Mac, the Docker toolset that contains all the necessary components to run Docker is called Docker Desktop. Currently, for Linux, they are developing this same toolset as well. With the help of Docker tools, developers are able to run, terminate, build and manage images and containers easily without the need to install any additional programs to run an application on their local machine.
+Docker Engine is available on the common operating system, such as Windows, macOS, and Linux distributions, and on the most common processor architectures, i.e. x86\_64, amd64, arm, and aarch64 \citep{docker:install}.  On Windows and Mac, the Docker toolset that contains all the necessary components to run Docker is called Docker Desktop. Currently, for Linux, they are developing this same toolset as well. With the help of Docker tools, developers are able to run, terminate, build and manage images and containers easily without the need to install any additional programs to run an application on their local machine.
 
-Docker Desktop for Windows uses the Windows Subsystem for Linux 2 (WSL2) or Hyper-V hypervisor and Windows Containers feature, which is available on the most recent versions of 64-bit Windows 10 and 11\cite{docker:windows}.
+Docker Desktop for Windows uses the Windows Subsystem for Linux 2 (WSL2) or Hyper-V hypervisor and Windows Containers feature, which is available on the most recent versions of 64-bit Windows 10 and 11 \citep{docker:windows}.
 
-[Docker orchestration / Kubernetes / Docker swarm?]
+For managing multiple containers in production you can use a container orchestration framework \citep{circleci:swarm_kubernetes}. The most common orchestration framework tools are Docker Swarm and Kubernetes. Orchestration tools provides some important features, for example, load balancing, scaling, availability and self-healing of containers. Compared to Kubernetes, Docker Swarm is more lightweight but has less features. With the use of orchestration frameworks, you have less to worry about when having your software architecture deployed in production.
+
+[Docker orchestration / Kubernetes / Docker swarm]
 
 \bibliography{sample}
 
