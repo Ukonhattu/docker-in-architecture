@@ -105,7 +105,8 @@ A Docker registry is a service for storing and downloading images \citep{aquasec
 
 \section{Quality Attributes}
 
-Based on how Docker is built, the system has some qualities hoisted in it. In this section, we will list some important qualities from the architectural and agile perspective, if you decide to use Docker in your infrastructure. 
+
+Based on how Docker is built, the system has some qualities hoisted in it. In this section, we will list some important qualities from the architectural and agile perspective, if you decide to use Docker in your infrastructure compared to just directry running sofware on the host machine. 
 
 \subsection{Portability (SS)}
 One key aspect of Docker is its Portability. With software portability, we refer to the usability of the same software in different environments, such as the underlying operating system or hardware \citep{wiki:Software_portability}. Portability is achieved based on how the Docker technology is built. Each container includes all the dependencies required for the application to work and only requires an underlying operating system and infrastructure that supports the Docker Engine \citep{hy:DevOps_with_Docker}.
@@ -138,6 +139,11 @@ that constructing microservices software becomes much less cumbersome and more e
 
 Docker ensures that the software is isolated from other software. This means that we don't have to think about how other software running on the same namespace or file system could affect our software nor how our software could affect other software or other parts of itself. This also makes the software more secure.
 In addition, since every part of the software is run in its own virtual environment, the container, we can have different parts of the software use different versions of the same dependencies.
+
+Docker also brings some limitations to the architecture. You cannot have persistent local storage within the container, because everything
+in the container will be removed when the container terminates. You can make mounts to the host machine filesystem, but that is not possible in a cloud
+environment. Therefore, you need figure out alternate ways to store data or not to rely on saved data at all. However, this can be seen as a limitation
+on using cloud rather than Dcoker.
 
 For development, since every dependency is defined in the image and is run within the container, everybody should have exact same development environment as what is used in production. This prevents bugs that happen because people have different configurations on their own machines which leads to "works on my machine" situations.
 
