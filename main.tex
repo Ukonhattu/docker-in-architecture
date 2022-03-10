@@ -37,13 +37,12 @@ Another way to put DevOps is that it consists of the development of software and
 
 Containerization is common as a part of DevOps. Docker is one of the most common containerization software since its release in 2013 \citep{aquasec:orchestration}. Docker is a product that enables you to easily develop, ship, and run your application on different infrastructures by using OS-level virtualization \citep{docker:overview}. In this technology brief, we will explain what is meant by containerization, how it compares to virtual machines and how do you use docker as a part of software architecture. 
 
-We will start by comparing Docker and Virtual Machines in chapter 2. In chapter 3 we examine the technical components of the thing under study. Chapter 4 describes the qualities that Docker has hoisted in it followed by the architectural impact in chapter 5. The last two chapters, 6 and 7, will be on the limitations of Docker and the tools that are available.
-
+We will start by comparing Docker and Virtual Machines in chapter 2. In chapter 3 we examine the technical components of the thing under study. Chapter 4 describes the qualities that Docker has hoisted in it followed by the architectural impact in chapter 5. In chapter 6 we will discuss some limitations when using Docker and limitations within its qualities. Chapter 7 will be about some of the most common Docker tools and orchestration frameworks and shortly about their advantages. Chapter 8 will be a conclusion.
 
 \section{Docker containers and virtual machines (DK)}
 
 Virtualization is a much older technology than Docker and virtual machines have been used for decades. To understand Docker a bit better, we need to compare
-it to virtual machines because it is important to understand that docker is not the same thing as a virtual machine. We can see the largest difference between Docker and virtual machines in Figure \ref{fig:dockervsvm}: Virtual machines always have their own Guest OS, but Docker does not. This means that with every virtual machine we need to ship a complete OS with them, but Docker uses the underlying OS through the Docker Engine. Therefore, shipping multiple Docker containers is much lighter than shipping multiple virtual machines. However, virtual machines give you more freedom and easier configurability. In real-world cases, they are usually used together in cloud environments: The client has a virtual machine on the cloud and runs multiple Docker containers on the virtual machine.
+it to virtual machines because it is important to understand that Docker is not the same thing as a virtual machine. We can see the largest difference between Docker and virtual machines in Figure \ref{fig:dockervsvm}: Virtual machines always have their own Guest OS, but Docker does not. This means that with every virtual machine we need to ship a complete OS with them, but Docker uses the underlying OS through the Docker Engine. Therefore, shipping multiple Docker containers is much lighter than shipping multiple virtual machines. However, virtual machines give you more freedom and easier configurability. In real-world cases, they are usually used together in cloud environments: The client has a virtual machine on the cloud and runs multiple Docker containers on the virtual machine.
 
 The Docker product uses many features from the Linux kernel for delivering OS-level virtualization, the most important ones being namespaces and control groups \citep{docker:security}. Kernel namespaces provide isolation for containers so that they can not affect other processes running on the host machine or in another container. Control groups are used for creating a fair share of computational resources for each container running on the host machine. Control groups also make sure that a container can not crash the host machine by overusing computational resources, such as disk I/O, memory or CPU. Each container also has its own network stack, so it can not access other containers' sockets and interfaces.
 
@@ -79,7 +78,7 @@ Docker Images are read-only binary files that are used to build containers \cite
 
 \subsubsection{Docker Containers}
 
-Docker Containers are isolated environments that run applications \citep{aquasec:docker_architecture}. The container contains all the necessary dependencies that are required for running the application. Running containers are isolated from other containers and also have good isolation from the host machine \citep{docker:security}. Containers are temporary and once they are deleted all the data within the container will disappear. Containers can be connected to networks and storage and in this way, the isolation to the host machine can be configured and data can be stored in a persistent way.
+Docker Containers are isolated environments that run applications \citep{aquasec:docker_architecture}. The container contains all the necessary dependencies that are required for running the application. Running containers are isolated from other containers and also have good isolation from the host machine \citep{docker:security}. Containers are temporary and once they are deleted all the data within the container will disappear. Containers can be connected to a network and persistent storage.
 
 \subsubsection{Docker Networking}
 
@@ -106,6 +105,7 @@ A Docker registry is a service for storing and downloading images \citep{aquasec
 
 \section{Quality Attributes}
 
+
 Based on how Docker is built, the system has some qualities hoisted in it. In this section, we will list some important qualities from the architectural and agile perspective, if you decide to use Docker in your infrastructure compared to just directry running sofware on the host machine. 
 
 \subsection{Portability (SS)}
@@ -114,13 +114,12 @@ One key aspect of Docker is its Portability. With software portability, we refer
 \subsection{Deployability (SS)}
 As Docker images are versionable, this gives the possibility to easily test, roll back and deploy applications\citep{hentsu:benefits}. As Docker images are smaller than Virtual Machine images, deploying an image to production is fast and results in a short downtime when deploying to a production environment. 
 
-\subsection{Security (DK)}
+\subsection{Security / Isolation (DK)}
 Docker promises some security advantages if configured correctly \citep{docker:security}:
 \begin{itemize}
     \item  Docker namespace is isolated from other programs on the machine. It cannot access other software namespaces and other software cannot access Docker's namespaces. 
     \item Each container has its own network stack and doesn't get privileged access to other containers' sockets.
     \item Docker utilizes control groups. For security, this means that a single container cannot bring the machine down even if it tried to. (Performance wise)
-    
 \end{itemize}
 
 \subsection{Scalability (DK)}
@@ -135,7 +134,6 @@ container that was working without problems. Redeploying containers is also easy
 
 \section{Architectural impact (DK)}
 
-
 Docker is mainly a tool for development and deployment. The application itself doesn't necessarily know if it is run on a physical machine, a virtual machine, or in a Docker container. Therefore, Docker does not absolutely have any impact on the software architecture. However, Docker excels with running multiple containers at the same time easily and therefore is a great tool for developing and deploying software with microservices architecture. This leads to the fact
 that constructing microservices software becomes much less cumbersome and more easily configurable, so Docker allows people to make microservices more easily, making it a great pattern to develop and test and thus has an indirect architectural impact.
 
@@ -149,21 +147,25 @@ on using cloud rather than Dcoker.
 
 For development, since every dependency is defined in the image and is run within the container, everybody should have exact same development environment as what is used in production. This prevents bugs that happen because people have different configurations on their own machines which leads to "works on my machine" situations.
 
-
-
 \section{Limitations (SS)}
 
-As Docker adds a layer between the container and the host kernel it doesn't suit well if you need to get full performance from your underlying hardware, although it is still more lightweight than VMs \citep{cloudsavvy:not_to_use}. In comparison to virtual machines, containers are not able to run different operating systems that would require a different kernel than the underlying host machine. For simple monolith architectures and desktop applications with high graphical requirements, Docker containerization does not offer the possible qualities that the Docker orchestration and containerization provide.
+As Docker adds a layer between the container and the host kernel it doesn't suit well if you need to get full performance from your underlying hardware, although it is still more lightweight than VMs \citep{cloudsavvy:not_to_use}. In comparison to virtual machines, containers are not able to run different operating systems that would require a different kernel than the underlying host machine. 
 
-[Perhaps something on architectural impact and/or more on the graphical part]
+For simple monolith architectures and desktop applications with high graphical requirements, Docker containerization does not offer the possible qualities that the Docker orchestration and containerization provide. Although, portability might be something that is great to have in development of simple monolith architectures so that you can easily setup the development environment for your team.
+
+As a user of the Docker environment, your configurations ensures that security and isolation is achieved with Docker. This can be achieved by always keeping the Docker Engine version up to date \citep{aquasec:docker-security-best-practices}. For configuration, you should try to run Docker in rootless mode and avoid running containers in privilege mode, this way you can mitigate the risk that the container could wrongly access the host or other containers. Trying to minimize the amount of dependencies within the container will also lower the attack surface. If you decide to use a base image from a Docker Registry, you should always study the image and ensure that it doesn't contain anything out of the ordinary.
+
+Docker provides good isolation and security if the user knows what they are doing, this way one could say that Docker does not exactly hoist security and isolation when starting to use Docker out-of-the-box. This is a limitation that can be overcome by studying Docker and its caveats.
 
 \section{Docker Tools (SS)}
 
 Docker Engine is available on the common operating system, such as Windows, macOS, and Linux distributions, and on the most common processor architectures, i.e. x86\_64, amd64, arm, and aarch64 \citep{docker:install}.  On Windows and Mac, the Docker toolset that contains all the necessary components to run Docker is called Docker Desktop. Currently, for Linux, they are developing this same toolset as well. With the help of Docker tools, developers are able to run, terminate, build and manage images and containers easily without the need to install any additional programs to run an application on their local machine.
 
-Docker Desktop for Windows uses the Windows Subsystem for Linux 2 (WSL2) or Hyper-V hypervisor and Windows Containers feature, which is available on the most recent versions of 64-bit Windows 10 and 11 \citep{docker:windows}.
+Docker Desktop for Windows uses the Windows Subsystem for Linux 2 (WSL2) or Hyper-V Hypervisor and Windows Containers feature, which is available on the most recent versions of 64-bit Windows 10 and 11 \citep{docker:windows}. In both cases you will have the Linux kernel running on top of the Windows operating system, either in a virtual machine or the more lightweight WSL2. 
 
 For managing multiple containers in production you can use a container orchestration framework \citep{circleci:swarm_kubernetes}. The most common orchestration framework tools are Docker Swarm and Kubernetes. Orchestration tools provide some important features, for example, load balancing, scaling, availability, and self-healing of containers. Compared to Kubernetes, Docker Swarm is more lightweight but has fewer features. With the use of orchestration frameworks, you have less to worry about when having your software architecture deployed in production.
+
+Another popular tool that is widely used for defining and running multi-container environments is Docker Compose. With help of Docker Compose you can spin up the whole multi-container environment with just one command, making it suitable for development environment, but works as well in production, staging, testing and CI/CD pipelines \citep{docker:compose-overview}. Some of the features that makes Docker Compose great is that it can run multiple isolated environments on the same host and it preserves volumes used by you environment, that is, it can copy volumes from old containers to the newly started containers.
 
 \section{Conlusion}
 Coming soon
